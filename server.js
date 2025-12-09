@@ -1,11 +1,9 @@
-import express from "express"
+import express from 'express'
+import { defaultRouter } from '/controllers/default.js'
 
 const app = express()
 const port= 3000
 
-app.get('/', (req, res) => {
-    console.log(`Request: ${req.method} - ${req.originalUrl}`)
-    res.send(`<h1>Welcome to the homepage</h1>`)
-})
+app.use(defaultRouter)
 
 app.listen(3000, () => console.log("Server running"))
