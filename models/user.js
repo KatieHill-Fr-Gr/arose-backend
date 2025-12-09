@@ -22,12 +22,19 @@ const userSchema = new mongoose.Schema({
     },
 })
 
+userSchema.pre('validate', function(next) {
+    if(this.username.length > 10) {this.invalidate('username', 'Username was too long')
+        } next()
+})
+
 userSchema.pre('save', function(next) {
     if (this.isModified('password')) {
         this.password = bcrypt.hashSync(this.password, 12)
     }
     next()
 })
+
+
 
 const User = mongoose.model('User', userSchema)
 
