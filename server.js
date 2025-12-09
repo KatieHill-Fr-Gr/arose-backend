@@ -1,9 +1,13 @@
 import express from 'express'
-import { defaultRouter } from '/controllers/default.js'
+import { defaultRouter } from './controllers/default.js'
+import { authRouter } from './controllers/auth.js'
+import { projectsRouter } from './controllers/projects.js'
 
 const app = express()
 const port= 3000
 
-app.use(defaultRouter)
+app.use('/', defaultRouter)
+app.use('/auth', authRouter)
+app.use('/projects', projectsRouter)
 
-app.listen(3000, () => console.log("Server running"))
+app.listen(3000, () => console.log('Server running'))
