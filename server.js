@@ -2,6 +2,7 @@ import express from 'express'
 import { defaultRouter } from './controllers/default.js'
 import { authRouter } from './controllers/auth.js'
 import { projectsRouter } from './controllers/projects.js'
+import 'dotenv/config'
 
 const app = express()
 const port= 3000
