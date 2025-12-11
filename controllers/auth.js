@@ -27,17 +27,20 @@ router.post('/sign-up', async (req, res, next) => {
 router.post('/sign-in', async (req, res, next) => {
     console.log(`Request: ${req.method} - ${req.originalUrl}`)
 
-    const { identifier, password} = req.body
+    const { username, password} = req.body
+
+    console.log('Request body:', req.body)
 
     try {
+        console.log('Identifier:', identifier)
         const foundUser = await User.findOne({
             $or: [
-                { username: identifier },
-                { email: identifier }
+                { username: username },
+                { email: username }
             ]
         })
 
-        console.log(foundUser)
+        console.log('Query result:', foundUser);
 
         if (!foundUser) throw new Unauthorized('User does not exist')
         if (!bcrypt.compareSync(password, foundUser.password)) throw new Unauthorized('Password not recognised')

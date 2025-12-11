@@ -1,4 +1,5 @@
 import express from 'express'
+import morgan from 'morgan'
 import 'dotenv/config'
 
 import verifyToken from './middleware/verifyToken.js'
@@ -13,6 +14,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(morgan('dev'))
 
 app.use('/', defaultRouter)
 app.use('/auth', authRouter)
