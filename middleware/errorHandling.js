@@ -1,25 +1,27 @@
 
-export class NotFound extends Error {
-    constructor(message = 'Not Found') {
-        super(message)
-        this.name = 'NotFound'
-        this.status= 404
-    }
-}
+const errorHandler = (err, req, res, next) => {
 
-export class InvalidData extends Error {
-    contructor(message, field) {
-        super(message)
-        this.name = 'InvalidData'
-        this.status = 400
-        this.field = field
+    const logError = (err) => {
+        console.log('--------------')
+        console.log(' ERROR ')
+        console.log('Name: ', err.name)
+        console.log('Status: ', err.status)
+        console.log('Status: ', err.message)
+        console.log('--------------')
+        console.log('Stack: ')
+        console.log(err.stack)
+        console.log('--------------')
+        console.log('The above error occurred during the below request:')
     }
-}
 
-export class Unauthorized extends Error {
-    constructor(message) {
-        super(message)
-        this.name = 'Unauthorized'
-        this.status = 401
+    if (err.status === 404 || err.name === 'NotFound') {
+        return res.status(404).json({ message: err.message })
     }
+
+    if (err.name === 'InvalidData' {
+        return res.status(err.status).json({ [err.field]: err.message })
+    })
+
+
+
 }

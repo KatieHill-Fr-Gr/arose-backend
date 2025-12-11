@@ -17,7 +17,7 @@ router.post('/sign-up', async (req, res, next) => {
         const newUser = await User.create(req.body)
         const token = generateToken(newUser)
 
-        return res.status(201).json({ token: token})
+        return res.status(201).json({ token: token })
 
     } catch (err) {
         next(err)
