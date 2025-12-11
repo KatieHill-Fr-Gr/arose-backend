@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
     },
 })
 
-userSchema.pre('validate', function(next) {
-    if(this.username.length > 10) {this.invalidate('username', 'Username was too long')
-        } next()
+userSchema.pre('validate', function() {
+    if (this.username.length > 10) {this.invalidate('username', 'Username was too long')
+        } 
 })
 
 userSchema.pre('save', function(next) {
