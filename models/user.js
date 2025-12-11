@@ -27,14 +27,11 @@ userSchema.pre('validate', function() {
         } 
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function() {
     if (this.isModified('password')) {
         this.password = bcrypt.hashSync(this.password, 12)
     }
-    next()
 })
-
-
 
 const User = mongoose.model('User', userSchema)
 
