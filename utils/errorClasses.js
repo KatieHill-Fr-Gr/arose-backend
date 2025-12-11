@@ -8,7 +8,7 @@ export class NotFound extends Error {
 }
 
 export class InvalidData extends Error {
-    contructor(message, field) {
+    constructor(message, field) {
         super(message)
         this.name = 'InvalidData'
         this.status = 400
