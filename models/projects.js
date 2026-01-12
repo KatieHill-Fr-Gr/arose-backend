@@ -19,6 +19,14 @@ const projectSchema = new mongoose.Schema(
                 message: 'Please add at least one paragraph'
             }
         },
+        image: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
     }
 
 )
