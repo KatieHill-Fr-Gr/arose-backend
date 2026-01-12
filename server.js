@@ -18,7 +18,7 @@ app.use(morgan('dev'))
 
 app.get('/', async (req, res, next) => {
     try {
-        res.json({ message: 'Welcome to the API'})
+        res.json({ message: 'This API is up and running'})
     } catch (err) {
         next(err)
     }
