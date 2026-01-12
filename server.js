@@ -1,13 +1,13 @@
 import express from 'express'
 import morgan from 'morgan'
 import 'dotenv/config'
+import mongoose from 'mongoose'
 
 import verifyToken from './middleware/verifyToken.js'
 
-import { defaultRouter } from './controllers/default.js'
 import { authRouter } from './controllers/auth.js'
 import { projectsRouter } from './controllers/projects.js'
-import mongoose from 'mongoose'
+
 
 
 const app = express()
@@ -16,7 +16,14 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 app.use(morgan('dev'))
 
-app.use('/', defaultRouter)
+app.get('/', async (req, res, next) => {
+    try {
+        res.json({ message: 'Welcome to the API'})
+    } catch (err) {
+        next(err)
+    }
+})
+
 app.use('/auth', authRouter)
 app.use('/projects', projectsRouter)
 
