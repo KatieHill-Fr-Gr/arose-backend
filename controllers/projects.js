@@ -55,6 +55,18 @@ router.put('/:projectId', async (req, res, next) => {
     }
 })
 
+router.delete('/:projectId', async (req, res, next) => {
+    console.log('delete')
+    try {
+        const { projectId } = req.params
+        const project = await Project.findById(projectId)
+        if (!project) throw new NotFound('Project not found')
+        await Project.findByIdAndDelete(projectId)
+        return res.sendStatus(204)
+    } catch (err) {
+        next(err)
+    }
+})
 
 
 
