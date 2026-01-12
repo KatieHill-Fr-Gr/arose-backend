@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import 'dotenv/config'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 import verifyToken from './middleware/verifyToken.js'
 
@@ -9,12 +10,16 @@ import { authRouter } from './controllers/auth.js'
 import { projectsRouter } from './controllers/projects.js'
 
 
-
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(morgan('dev'))
+
+app.use(cors({
+    origin:  ['http://localhost:5173', 'http://localhost:5174'],
+    credentials: true
+}))
 
 app.get('/', async (req, res, next) => {
     try {
