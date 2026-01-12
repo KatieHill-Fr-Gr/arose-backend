@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.post('/new', async (req, res, next) => {
+router.post('/', verifyToken, async (req, res, next) => {
     try {
         const newProject = await Project.create(req.body)
         return res.status(201).json(newProject)
@@ -42,7 +42,7 @@ router.get('/:projectId', async (req, res, next) => {
     }
 })
 
-router.put('/:projectId', async (req, res, next) => {
+router.put('/:projectId', verifyToken, async (req, res, next) => {
     try {
         const { projectId } = req.params
         const project = await Project.findById(projectId)
@@ -55,7 +55,7 @@ router.put('/:projectId', async (req, res, next) => {
     }
 })
 
-router.delete('/:projectId', async (req, res, next) => {
+router.delete('/:projectId', verifyToken, async (req, res, next) => {
     console.log('delete')
     try {
         const { projectId } = req.params
