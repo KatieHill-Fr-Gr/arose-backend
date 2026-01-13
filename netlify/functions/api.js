@@ -1,4 +1,6 @@
 import express from 'express'
+import serverless from 'serverless-http'
+
 import morgan from 'morgan'
 import 'dotenv/config'
 import mongoose from 'mongoose'
