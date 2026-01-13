@@ -4,7 +4,7 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
-import verifyToken from './middleware/verifyToken.js'
+import verifyToken from '../../middleware/verifyToken.js'
 
 import { authRouter } from '../../controllers/auth.js'
 import { projectsRouter } from '../../controllers/projects.js'
